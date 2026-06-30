@@ -1,0 +1,584 @@
+:root {
+    /* Royal Burgundy & Gold Palette */
+    --c-pearl: #4a0404; /* Deep Burgundy background */
+    --c-champagne: #D4AF37; /* Metallic Gold */
+    --c-champagne-light: #800000; /* Darker burgundy accent */
+    --c-gold: #C5A059; /* Solid Gold */
+    --c-charcoal: #FDF5E6; /* Off-white for elegant readable text */
+    --c-text-muted: #E4C787; /* Light gold for muted text */
+    --c-blush: #610a15; /* Burgundy blush */
+
+    /* Typography */
+    --f-heading: 'Pinyon Script', cursive;
+    --f-body: 'Raleway', sans-serif;
+    --f-accent: 'Pinyon Script', cursive;
+
+    /* Base Dimensions */
+    --envelope-width: 90vw;
+    --envelope-max-width: 600px;
+    
+    /* Elegant Shadows */
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.4);
+    --shadow-strong: 0 20px 40px rgba(0, 0, 0, 0.6);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background-color: var(--c-pearl);
+    color: var(--c-charcoal);
+    font-family: var(--f-body);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+::selection {
+    background: var(--c-champagne-light);
+    color: var(--c-charcoal);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5vw;
+}
+
+.text-center { text-align: center; }
+.relative { position: relative; }
+.z-10 { z-index: 10; }
+.mb-4 { margin-bottom: 4rem; }
+.mt-5 { margin-top: 5rem; }
+.max-w-600 { max-width: 600px; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+/* =========================================
+   TYPOGRAPHY
+========================================= */
+h1, h2, h3 { font-family: var(--f-heading); font-weight: 400; }
+p { font-family: var(--f-body); font-weight: 300; }
+
+.section-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1rem;
+    color: var(--c-gold);
+    /* Gold Foil Text Effect */
+    background: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 4px 6px rgba(0,0,0,0.05);
+}
+
+.floral-divider {
+    width: 100px; height: 30px; margin: 0 auto 2rem;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 30"><path d="M50 15 C 40 5, 20 5, 10 15 C 20 25, 40 25, 50 15 C 60 5, 80 5, 90 15 C 80 25, 60 25, 50 15 Z" fill="none" stroke="%23C5A059" stroke-width="1"/></svg>') no-repeat center;
+    position: relative;
+}
+.floral-divider::before {
+    content: '✧';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--c-champagne);
+    font-size: 1.2rem;
+    background: transparent;
+    padding: 0 10px;
+}
+
+/* =========================================
+   ENVELOPE ENTRANCE & WAX SEAL
+========================================= */
+.envelope-entrance {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+    z-index: 9999; display: flex; justify-content: center; align-items: center;
+    overflow: hidden; pointer-events: all;
+}
+.envelope-entrance.opened {
+    pointer-events: none;
+}
+
+.envelope-door {
+    position: absolute; top: 0; width: 50vw; height: 100vh;
+    background: var(--c-pearl); /* Match the new theme background */
+    box-shadow: inset 0 0 60px rgba(0,0,0,0.3); /* Darkened shadow for dark background */
+    transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 1;
+    /* Luxury stitched envelope edge */
+    outline: 2px dashed rgba(197, 160, 89, 0.6);
+    outline-offset: -20px;
+}
+.envelope-door::after {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    /* Mandala / Moroccan flower pattern */
+    background-image: url('https://www.transparenttextures.com/patterns/moroccan-flower.png');
+    opacity: 0.15;
+}
+
+.door-left { 
+    left: 0; 
+    border-right: 2px solid rgba(197, 160, 89, 0.8); 
+    box-shadow: 10px 0 30px rgba(0,0,0,0.05); 
+}
+.door-right { 
+    right: 0; 
+    border-left: 2px solid rgba(197, 160, 89, 0.8);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+}
+
+/* Zareqia-Style Aesthetic Gold Foil Frame */
+.door-left::before, .door-right::before {
+    content: ''; position: absolute; top: 30px; bottom: 30px;
+    border: 3px solid; 
+    border-image: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C) 1;
+    box-shadow: 0 0 15px rgba(212,175,55,0.3), inset 0 0 15px rgba(212,175,55,0.2);
+    pointer-events: none;
+}
+.door-left::before { left: 30px; right: 15px; }
+.door-right::before { right: 30px; left: 15px; }
+
+/* Gold Floral Corners using text-shadow replication */
+.door-left::after, .door-right::after {
+    content: '✾'; position: absolute; 
+    font-size: 26px; color: var(--c-champagne);
+    line-height: 1; pointer-events: none;
+    z-index: 5;
+}
+/* Left Door Floral Corners (Top-Left & Bottom-Left) */
+.door-left::after {
+    top: 17px; left: 17px; /* Centered on the 30px frame corner */
+    text-shadow: 0 calc(100vh - 60px) 0 var(--c-champagne);
+}
+/* Right Door Floral Corners (Top-Right & Bottom-Right) */
+.door-right::after {
+    top: 17px; right: 17px; left: auto;
+    text-shadow: 0 calc(100vh - 60px) 0 var(--c-champagne);
+}
+
+.envelope-entrance.opened .door-left { transform: translateX(-100%); }
+.envelope-entrance.opened .door-right { transform: translateX(100%); }
+
+.wax-seal-container {
+    position: relative; z-index: 2; text-align: center; cursor: pointer;
+    transition: transform 0.3s ease;
+}
+/* Glowing gold aura behind the seal */
+.wax-seal-container::before {
+    content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 140px; height: 140px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.2), transparent 70%);
+    z-index: -1; animation: pulseGlow 2s infinite alternate;
+}
+@keyframes pulseGlow {
+    from { transform: translate(-50%, -50%) scale(0.9); opacity: 0.5; }
+    to { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+}
+
+.wax-seal-container:hover { transform: scale(1.05); }
+.wax-seal-container.broken {
+    transform: scale(1.5); opacity: 0; transition: all 0.8s ease-in;
+    pointer-events: none;
+}
+
+.wax-seal {
+    width: 140px; height: 140px;
+    background-image: url('burgundy_gold_wax_seal.png');
+    background-size: 145%; /* Zoom in to push all the background outside the circle */
+    background-position: center;
+    border-radius: 50%; /* Clip it into a perfect circle */
+    display: flex; justify-content: center; align-items: center;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    position: relative; margin: 0 auto;
+}
+.seal-initials {
+    font-family: var(--f-heading); 
+    font-size: 4rem; 
+    font-weight: bold;
+    color: #8A641C; /* Darker gold/brown for depth */
+    text-shadow: 
+        1px 1px 2px rgba(255,255,255,0.6), 
+        -1px -1px 3px rgba(0,0,0,0.8);
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+.seal-instruction {
+    margin-top: 1.5rem; font-size: 0.8rem; letter-spacing: 4px; color: var(--c-charcoal);
+    text-transform: uppercase; animation: pulse 2s infinite; font-weight: bold;
+}
+@keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+/* =========================================
+   AUDIO CONTROLLER
+========================================= */
+.audio-btn {
+    position: fixed; bottom: 30px; right: 30px;
+    width: 50px; height: 50px; border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--c-champagne-light);
+    color: var(--c-charcoal);
+    z-index: 9000; cursor: pointer;
+    display: flex; justify-content: center; align-items: center;
+    box-shadow: var(--shadow-soft);
+    opacity: 0; pointer-events: none; transition: all 0.4s;
+}
+.audio-btn.visible { opacity: 1; pointer-events: all; }
+.audio-btn:hover { background: var(--c-blush); transform: scale(1.05); }
+
+/* =========================================
+   VIDEO & IMAGE BACKGROUNDS
+========================================= */
+.video-container {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0; overflow: hidden;
+}
+.hero-image-container {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0; overflow: hidden;
+}
+.bg-video {
+    width: 100%; height: 100%; object-fit: cover;
+    opacity: 0.8; /* Slight fade for ethereal look */
+}
+.hero-bg-image {
+    width: 100%; height: 100%;
+    background-size: 100% 100%; /* Stretch to fit exactly without cropping */
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0; /* Starts hidden for entrance anim */
+    transition: opacity 2.5s ease-in-out;
+}
+.hero-bg-image.show {
+    opacity: 1;
+}
+.video-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    /* Fades perfectly into the deep burgundy background #4a0404 */
+    background: linear-gradient(to bottom, rgba(74,4,4,0.3), rgba(74,4,4,1));
+}
+.video-overlay.light {
+    background: linear-gradient(to bottom, rgba(74,4,4,0.1), rgba(74,4,4,1));
+}
+
+/* =========================================
+   SECTIONS
+========================================= */
+.dynamic-bg-section {
+    position: relative;
+    padding: 10vh 0;
+    overflow: hidden;
+    /* Adding subtle attractive texture to all backgrounds */
+    background-image: url('https://www.transparenttextures.com/patterns/moroccan-flower.png');
+    background-blend-mode: multiply;
+}
+
+section {
+    position: relative;
+    padding: 10vw 0;
+    min-height: 100vh;
+}
+
+/* Hero Section */
+.hero-section {
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; padding: 0; overflow: hidden;
+}
+
+.hero-content {
+    position: relative; z-index: 10; text-align: center;
+    padding: 12vh 30px 5vh 30px;
+    display: block; /* Removed flex centering */
+}
+.ampersand {
+    font-family: var(--f-accent); font-size: clamp(2rem, 5vw, 3rem); 
+    margin: 0;
+    background: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.welcome-text {
+    font-family: var(--f-body); font-size: clamp(0.7rem, 1.2vw, 0.9rem); 
+    letter-spacing: clamp(1px, 0.5vw, 3px); 
+    color: var(--c-charcoal); text-transform: uppercase; margin-bottom: 2vh;
+    line-height: 1.4; opacity: 0.9;
+}
+.parents-text {
+    font-family: var(--f-accent); font-size: clamp(1.2rem, 3vw, 2.2rem); 
+    color: var(--c-gold); margin: 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+.couple-names {
+    font-family: var(--f-heading); font-size: clamp(3rem, 7vw, 4.5rem); 
+    color: var(--c-charcoal); line-height: 1; margin-bottom: 2px;
+}
+
+.hero-date {
+    font-size: 0.9rem; letter-spacing: 8px; color: var(--c-text-muted);
+    margin-bottom: 2rem;
+}
+
+.couple-names span {
+    font-family: var(--f-body); font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 300; color: var(--c-champagne); font-style: italic;
+}
+
+.hero-location {
+    font-size: 0.8rem; letter-spacing: 5px; color: var(--c-text-muted);
+    margin-top: 3rem;
+}
+
+.scroll-down {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 10px; z-index: 10;
+}
+.scroll-down p { font-size: 0.7rem; letter-spacing: 3px; color: var(--c-charcoal); text-transform: uppercase; }
+.mouse-icon {
+    width: 20px; height: 30px; border: 1px solid var(--c-charcoal); border-radius: 10px;
+    display: flex; justify-content: center; padding-top: 5px;
+}
+.wheel {
+    width: 2px; height: 5px; background: var(--c-charcoal); border-radius: 2px;
+    animation: scrollWheel 2s infinite;
+}
+@keyframes scrollWheel { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(10px); opacity: 0; } }
+
+/* Story / Romance Section */
+.story-section { background: transparent; padding-top: 15vw; }
+
+.image-story-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5vw;
+}
+
+.story-img-card { position: relative; }
+.img-left { margin-top: 10%; }
+.img-right { margin-top: -5%; }
+
+.img-wrapper {
+    position: relative; width: 100%; aspect-ratio: 3/4; overflow: hidden;
+    border-radius: 5px; box-shadow: var(--shadow-soft);
+}
+.img-wrapper img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 1.5s var(--ease-smooth);
+}
+.story-img-card:hover .img-wrapper img { transform: scale(1.05); }
+
+.img-caption {
+    position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%);
+    background: var(--c-pearl); padding: 15px 30px; border-radius: 30px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 1px solid var(--c-champagne-light);
+    white-space: nowrap; z-index: 2;
+}
+.img-caption h3 { font-size: 1.2rem; color: var(--c-champagne); }
+
+/* Events Section (Frosted Zareqia Style) */
+.events-section { background: var(--c-blush); }
+
+.events-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem; margin-top: 4rem;
+}
+
+.glass-event-card {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(197, 160, 89, 0.4);
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08), inset 0 0 20px rgba(255,255,255,0.6);
+    position: relative;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.glass-event-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 60px rgba(197, 160, 89, 0.2), inset 0 0 20px rgba(255,255,255,0.8);
+    border: 1px solid rgba(197, 160, 89, 0.8);
+}
+.glass-event-card.main-event {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--c-champagne);
+    transform: scale(1.05); z-index: 2;
+}
+.glass-event-card.main-event:hover { transform: scale(1.05) translateY(-10px); }
+
+.e-day { font-size: 0.7rem; letter-spacing: 4px; color: var(--c-text-muted); margin-bottom: 1rem; }
+.e-title { font-size: 2rem; color: var(--c-charcoal); margin-bottom: 1.5rem; }
+.e-date { font-weight: 700; color: var(--c-charcoal); margin-bottom: 0.5rem; }
+.e-time { color: var(--c-champagne); margin-bottom: 2rem; }
+.e-line { width: 30px; height: 1px; background: var(--c-champagne-light); margin: 0 auto 2rem; }
+.e-venue { font-family: var(--f-heading); font-size: 1.2rem; margin-bottom: 2rem; }
+.e-map {
+    display: inline-block; padding: 10px 25px; border: 1px solid var(--c-charcoal);
+    color: var(--c-charcoal); text-decoration: none; font-size: 0.8rem; letter-spacing: 2px;
+    transition: all 0.3s; border-radius: 30px;
+}
+.e-map:hover { background: var(--c-charcoal); color: var(--c-pearl); }
+
+/* RSVP Section */
+.rsvp-section { padding: 8rem 0; position: relative; overflow: hidden; }
+.rsvp-bg {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=2000&auto=format&fit=crop');
+    background-size: cover; background-position: center; opacity: 0.1; filter: grayscale(100%);
+}
+
+.rsvp-glass-container {
+    max-width: 600px; margin: 0 auto; background: rgba(255, 255, 255, 0.9);
+    padding: 4rem 3rem; border-radius: 10px; box-shadow: var(--shadow-soft);
+    border: 1px solid var(--c-champagne-light);
+}
+
+.premium-form .input-group { position: relative; margin-bottom: 2.5rem; }
+.premium-form input, .premium-form select {
+    width: 100%; padding: 10px 0; background: transparent; border: none;
+    border-bottom: 1px solid #ddd; font-family: var(--f-body); font-size: 1.1rem;
+    color: var(--c-charcoal); transition: border-color 0.3s; appearance: none;
+}
+.premium-form input:focus, .premium-form select:focus {
+    outline: none; border-bottom-color: var(--c-champagne);
+}
+.premium-form label {
+    position: absolute; top: 10px; left: 0; color: var(--c-text-muted);
+    font-size: 1rem; transition: all 0.3s var(--ease-smooth); pointer-events: none;
+}
+.premium-form input:focus + label, .premium-form input:not(:placeholder-shown) + label {
+    top: -15px; font-size: 0.7rem; color: var(--c-champagne); letter-spacing: 1px;
+}
+.premium-form input::placeholder { color: transparent; }
+
+.btn-premium {
+    width: 100%; padding: 15px 0; background: var(--c-charcoal); color: var(--c-pearl);
+    border: none; font-family: var(--f-body); font-size: 1rem; letter-spacing: 2px;
+    text-transform: uppercase; cursor: pointer; transition: background 0.3s;
+    border-radius: 5px; margin-top: 1rem;
+}
+.btn-premium:hover { background: var(--c-champagne); }
+
+.success-message { text-align: center; padding: 2rem; }
+.success-message h3 { color: var(--c-champagne); font-size: 2rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+
+/* Footer */
+.footer-section { background: var(--c-charcoal); color: var(--c-pearl); padding: 6rem 0 4rem; }
+.dua { font-family: var(--f-arabic); font-size: 2rem; color: var(--c-champagne); margin-bottom: 1rem; }
+.dua-translation { font-size: 0.9rem; font-style: italic; opacity: 0.7; margin-bottom: 4rem; }
+.footer-logo { font-size: 3rem; color: var(--c-pearl); }
+
+/* GSAP Animation Classes */
+.fade-up { opacity: 0; transform: translateY(50px); }
+.fade-left { opacity: 0; transform: translateX(50px); }
+.fade-right { opacity: 0; transform: translateX(-50px); }
+
+/* Custom Entrance Animation (Names fade in after bg) */
+.entrance-anim, .entrance-anim-delayed {
+    opacity: 0; transform: translateY(30px);
+    transition: all 2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.entrance-anim.show, .entrance-anim-delayed.show {
+    opacity: 1; transform: translateY(0);
+}
+
+/* =========================================
+   COUNTDOWN TIMER
+========================================= */
+.countdown-grid {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: nowrap; /* Forces a single line even on mobile */
+    width: 100%;
+    margin-top: 2rem;
+}
+.countdown-item {
+    background: rgba(255,255,255,0.7);
+    padding: 20px 10px;
+    border-radius: 10px;
+    border: 1px solid var(--c-champagne);
+    flex: 1; /* Stretch evenly */
+    min-width: 0; /* Important: prevents flexing from pushing boxes out */
+}
+.countdown-number {
+    font-family: var(--f-heading);
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    color: var(--c-charcoal);
+    display: block;
+}
+.countdown-label {
+    font-family: var(--f-body);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: clamp(0.5rem, 2vw, 0.8rem);
+    color: var(--c-gold);
+    display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .countdown-grid {
+        gap: 8px; /* Tighter gap on mobile so it all fits */
+    }
+    .countdown-item {
+        padding: 15px 5px; /* Tighter padding */
+    }
+    .image-story-grid { grid-template-columns: 1fr; gap: 4rem; }
+    .img-left, .img-right { margin-top: 0; }
+    .glass-event-card.main-event { transform: none; }
+    .glass-event-card.main-event:hover { transform: translateY(-10px); }
+}
+
+/* =========================================
+   RSVP FORM
+========================================= */
+.rsvp-form {
+    max-width: 500px; margin: 0 auto;
+    display: flex; flex-direction: column; gap: 15px;
+    text-align: left;
+}
+.rsvp-form input, .rsvp-form select, .rsvp-form textarea {
+    padding: 15px;
+    border: 1px solid rgba(197, 160, 89, 0.4);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    font-family: var(--f-body); font-size: 1rem; color: var(--c-charcoal);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.rsvp-form input:focus, .rsvp-form select:focus, .rsvp-form textarea:focus {
+    outline: none; border-color: var(--c-gold);
+    box-shadow: 0 0 10px rgba(197, 160, 89, 0.2);
+}
+.rsvp-submit-btn {
+    display: inline-block; padding: 15px 40px; background: var(--c-gold); 
+    color: white; border-radius: 30px; font-family: var(--f-body); 
+    text-decoration: none; font-weight: bold; font-size: 1.1rem; 
+    box-shadow: 0 10px 20px rgba(197, 160, 89, 0.3); 
+    border: none; cursor: pointer; transition: transform 0.3s ease, background 0.3s ease;
+    text-align: center; margin-top: 10px; text-transform: uppercase; letter-spacing: 2px;
+}
+.rsvp-submit-btn:hover {
+    transform: translateY(-3px); background: #b08d48;
+}
+
+/* =========================================
+   ANIMATED BACKGROUND MANDALAS
+========================================= */
+.bg-mandala {
+    position: fixed;
+    width: 60vmin; height: 60vmin;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="black" stroke-width="0.5"/><path d="M50 5 L50 95 M5 50 L95 50 M18 18 L82 82 M18 82 L82 18" stroke="black" stroke-width="0.2"/><circle cx="50" cy="50" r="30" fill="none" stroke="black" stroke-width="0.5"/><circle cx="50" cy="50" r="15" fill="none" stroke="black" stroke-width="0.5"/></svg>');
+    background-size: contain; background-repeat: no-repeat;
+    z-index: 0; pointer-events: none;
+    filter: invert(72%) sepia(21%) saturate(910%) hue-rotate(5deg) brightness(91%) contrast(85%);
+    opacity: 0.15;
+    animation: rotateSlow 100s linear infinite;
+}
+.bg-mandala-1 { top: -20vmin; left: -20vmin; }
+.bg-mandala-2 { bottom: -20vmin; right: -20vmin; animation-direction: reverse; }
+.bg-mandala-3 { top: 40vh; right: -30vmin; width: 80vmin; height: 80vmin; opacity: 0.1; }
+@keyframes rotateSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
