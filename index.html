@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed & Sara - Wedding Invitation</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <!-- FIXED ANIMATED BACKGROUND MANDALAS -->
+    <div class="bg-mandala bg-mandala-1"></div>
+    <div class="bg-mandala bg-mandala-2"></div>
+    <div class="bg-mandala bg-mandala-3"></div>
+
+    <!-- LUXURY ENVELOPE ENTRANCE (ZAREQIA STYLE) -->
+    <div id="envelope-entrance" class="envelope-entrance">
+        <!-- The Left and Right Doors -->
+        <div class="envelope-door door-left"></div>
+        <div class="envelope-door door-right"></div>
+        
+        <!-- The Wax Seal -->
+        <div class="wax-seal-container" id="wax-seal">
+            <div class="wax-seal">
+                <span class="seal-initials">PR</span>
+            </div>
+            <p class="seal-instruction">Tap to Open</p>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT SCROLL WRAPPER -->
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+
+            <!-- CINEMATIC HERO (GEMINI AI FRAMED IMAGE) -->
+            <section class="hero-section dynamic-bg-section" data-bg-color="#4a0404">
+                <!-- AI Framed Ethereal Background -->
+                <div class="hero-image-container parallax-bg" data-speed="0.5">
+                    <div class="hero-bg-image" style="background-image: url('background 1.png');"></div>
+                    <div class="video-overlay light"></div>
+                </div>
+
+                <div class="hero-content entrance-anim">
+                    <h1 class="couple-names" style="margin-bottom: 0;">Ahmed</h1>
+                    <p class="parents-text">Son of Mr. & Mrs. MBBS Doctor</p>
+                    
+                    <div class="ampersand">&amp;</div>
+                    
+                    <h1 class="couple-names" style="margin-bottom: 0;">Sara</h1>
+                    <p class="parents-text">Daughter of Mr. & Mrs. [Name]</p>
+                </div>
+
+                <div class="scroll-down entrance-anim-delayed">
+                    <p>Discover</p>
+                    <div class="mouse-icon" style="box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+                        <div class="wheel"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FORMAL WELCOME SECTION -->
+            <section class="welcome-section dynamic-bg-section" data-bg-color="#4a0404">
+                <div class="container relative z-10 text-center fade-up" style="padding: 10vh 20px 5vh 20px;">
+                    <p class="welcome-text-large" style="font-family: var(--f-body); font-size: 1rem; letter-spacing: 4px; text-transform: uppercase; color: var(--c-charcoal); line-height: 2;">
+                        In the name of Love and endless devotion,<br>
+                        We are overjoyed to invite you to the beginning of our forever.<br>
+                        Please join us as we unite our hearts and families in marriage,<br>
+                        To witness the beautiful vows that will bind us for a lifetime.<br>
+                        Your presence will be the greatest blessing on our special day.<br>
+                        Together with our families, we await your joyful arrival.
+                    </p>
+                </div>
+            </section>
+
+            <!-- THE STORY / ROMANCE -->
+            <section class="story-section dynamic-bg-section" data-bg-color="#FDF5F2">
+                <!-- Abstract Particle Video Loop -->
+                <div class="video-container parallax-bg" data-speed="0.2">
+                    <video autoplay loop muted playsinline class="bg-video">
+                        <source src="https://assets.mixkit.co/videos/preview/mixkit-particles-of-gold-dust-floating-in-the-air-32520-large.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-overlay light"></div>
+                </div>
+
+                <div class="container relative z-10">
+                    <div class="text-block text-center fade-up">
+                        <h2 class="section-title">Two Souls,<br>One Destiny</h2>
+                        <div class="floral-divider"></div>
+                        <p class="body-text max-w-600 mx-auto">
+                            In the grand tapestry of life, our threads have finally woven together. We invite you to witness the beginning of our most beautiful chapter.
+                        </p>
+                    </div>
+
+                    <!-- Modern Overlapping Image Layout (Zareqia style) -->
+                    <div class="image-story-grid mt-5">
+                        <div class="story-img-card img-left fade-right">
+                            <div class="img-wrapper">
+                                <img src="ahmed_portrait.png" alt="Ahmed">
+                            </div>
+                            <div class="img-caption">
+                                <h3>Ahmed Bin Tariq</h3>
+                            </div>
+                        </div>
+                        <div class="story-img-card img-right fade-left">
+                            <div class="img-wrapper">
+                                <img src="sara_portrait.png" alt="Sarah">
+                            </div>
+                            <div class="img-caption">
+                                <h3>Sara [Name]</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SCRATCH TO REVEAL DATE -->
+            <section class="scratch-section dynamic-bg-section" data-bg-color="#4a0404">
+                <div class="container relative z-10 text-center fade-up" style="padding: 10vh 20px;">
+                    <h2 class="section-title">Save The Date</h2>
+                    <div class="floral-divider"></div>
+                    <p style="font-family: var(--f-body); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2rem; color: var(--c-charcoal);">Scratch to Reveal</p>
+                    
+                    <div class="scratch-container" id="scratch-container" style="position: relative; width: 300px; height: 150px; margin: 0 auto; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid var(--c-champagne);">
+                        <!-- The hidden date underneath -->
+                        <div class="revealed-content" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #3a0208; z-index: 1;">
+                            <h3 class="revealed-date" style="font-family: var(--f-heading); font-size: 2.5rem; color: var(--c-gold); margin: 0; text-shadow: 0 2px 10px rgba(0,0,0,0.9);">25 . 12 . 2026</h3>
+                        </div>
+                        <!-- The scratchable canvas overlay -->
+                        <canvas id="scratch-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; cursor: pointer;"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LIVE COUNTDOWN -->
+            <section class="countdown-section dynamic-bg-section" id="countdown-section" data-bg-color="#4a0404">
+                <div class="container relative z-10 text-center fade-up" style="padding: 10vh 20px;">
+                    <h2 class="section-title" style="font-size: 2.5rem; margin-bottom: 3rem;">Counting down to forever</h2>
+                    
+                    <div class="countdown-grid">
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="cd-days">00</span>
+                            <span class="countdown-label">Days</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="cd-hours">00</span>
+                            <span class="countdown-label">Hours</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="cd-minutes">00</span>
+                            <span class="countdown-label">Mins</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="cd-seconds">00</span>
+                            <span class="countdown-label">Secs</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROGRAM TIMELINE -->
+            <section class="events-section dynamic-bg-section" data-bg-color="#F4E7CE">
+                <div class="container relative z-10">
+                    <div class="text-block text-center fade-up mb-4">
+                        <h2 class="section-title">Program Timeline</h2>
+                        <div class="floral-divider"></div>
+                    </div>
+
+                    <div class="events-grid">
+                        <!-- Nikkah -->
+                        <div class="glass-event-card fade-up">
+                            <div class="card-inner">
+                                <p class="e-day">FRIDAY</p>
+                                <h3 class="e-title">The Nikah</h3>
+                                <p class="e-date">December 25, 2026</p>
+                                <p class="e-time">10:00 AM</p>
+                                <div class="e-line"></div>
+                                <p class="e-venue">The Royal Mosque, Dubai</p>
+                            </div>
+                        </div>
+
+                        <!-- Walima -->
+                        <div class="glass-event-card main-event fade-up" style="transition-delay: 0.2s;">
+                            <div class="card-inner">
+                                <p class="e-day">SATURDAY</p>
+                                <h3 class="e-title">Walima Reception</h3>
+                                <p class="e-date">December 26, 2026</p>
+                                <p class="e-time">07:00 PM</p>
+                                <div class="e-line"></div>
+                                <p class="e-venue">Burj Al Arab, Al Falak Ballroom</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PRE-WEDDING EVENTS -->
+            <section class="pre-wedding-section dynamic-bg-section" data-bg-color="#FDF5F2">
+                <div class="container relative z-10 text-center fade-up" style="padding: 10vh 20px;">
+                    <h2 class="section-title">Pre-Wedding Events</h2>
+                    <div class="floral-divider"></div>
+                    <div class="pre-wedding-card" style="margin-top: 2rem;">
+                        <h3 style="font-family: var(--f-heading); font-size: 2.5rem; color: var(--c-gold); margin-bottom: 1rem;">Mehndi & Haldi</h3>
+                        <p style="font-family: var(--f-body); letter-spacing: 2px; color: var(--c-charcoal); margin: 5px 0;">Thursday, December 24, 2026</p>
+                        <p style="font-family: var(--f-body); letter-spacing: 2px; color: var(--c-charcoal); margin: 5px 0;">06:00 PM Onwards</p>
+                        <p style="font-family: var(--f-accent); font-size: 2rem; color: var(--c-charcoal); margin-top: 1rem;">The Bride's Residence</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VENUE GOOGLE MAP -->
+            <section class="map-section dynamic-bg-section" data-bg-color="#4a0404">
+                <div class="container relative z-10 text-center fade-up" style="padding: 10vh 20px;">
+                    <h2 class="section-title">Venue Location</h2>
+                    <div class="floral-divider"></div>
+                    <div class="map-container" style="margin-top: 3rem;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3612.337968565259!2d55.18285531500806!3d25.14131298392233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6a576412f865%3A0xc3d17967b55f1fbe!2sBurj%20Al%20Arab!5e0!3m2!1sen!2sae!4v1689753041923!5m2!1sen!2sae" width="100%" height="400" style="border: 2px solid var(--c-gold); border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RSVP WHATSAPP & FOOTER -->
+            <section class="rsvp-section dynamic-bg-section" data-bg-color="#F4E7CE">
+                <div class="container relative z-10 text-center fade-up" style="padding: 15vh 20px 10vh 20px;">
+                    <h2 class="section-title">RSVP</h2>
+                    <div class="floral-divider"></div>
+                    <p style="font-family: var(--f-body); font-size: 1.2rem; color: var(--c-charcoal); margin-bottom: 2rem;">Please fill out the form below to confirm your attendance.</p>
+                    
+                    <form id="rsvp-form" class="rsvp-form">
+                        <input type="text" id="rsvp-name" placeholder="Your Name(s)" required>
+                        <select id="rsvp-attend" required>
+                            <option value="" disabled selected>Will you attend?</option>
+                            <option value="Joyfully Accepts">Joyfully Accepts</option>
+                            <option value="Regretfully Declines">Regretfully Declines</option>
+                        </select>
+                        <button type="submit" class="rsvp-submit-btn">
+                            Send Message
+                        </button>
+                    </form>
+
+                    <div style="margin-top: 15vh;">
+                        <h2 class="couple-names" style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;">We can't wait to celebrate with you</h2>
+                        <h1 class="couple-names" style="font-size: clamp(3rem, 6vw, 4.5rem);">Ahmed & Sara</h1>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- AUDIO CONTROLS -->
+    <button id="audio-btn" class="audio-btn" aria-label="Toggle music">
+        <i class="fas fa-volume-up"></i>
+    </button>
+    <audio id="bg-music" loop>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-wedding-day-13.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Main Script -->
+    <script src="script.js"></script>
+</body>
+</html>
